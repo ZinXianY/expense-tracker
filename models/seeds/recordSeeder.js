@@ -6,8 +6,12 @@ const db = require('../../config/mongoose')
 
 //連線成功
 db.once('open', () => {
-  for (let i = 0; i < RecordList.results.length; i++) {
-    Record.create(RecordList.results[i])
-  }
-  console.log('Record Done')
+  Record.create(RecordList.results)
+    .then(() => {
+      console.log('Record Done')
+      return db.close()
+    })
+    .then(() => {
+      console.log('database connection close')
+    })
 })

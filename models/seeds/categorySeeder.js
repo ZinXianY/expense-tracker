@@ -1,16 +1,42 @@
 const Category = require('../category')
 
-RecordList = require('./record.json')
+const RecordList = require('./record.json')
 
 const db = require('../../config/mongoose')
 
+
+const type = [
+  {
+    name: '家居物業',
+    icon: 'fas fa-home'
+  },
+  {
+    name: '交通出行',
+    icon: 'fas fa-shuttle-van'
+  },
+  {
+    name: '休閒娛樂',
+    icon: 'fas fa-grin-beam'
+  },
+  {
+    name: '餐飲食品',
+    icon: 'fas fa-utensils'
+  },
+  {
+    name: '其他',
+    icon: 'fas fa-pen'
+  }
+]
+
+
 //連線成功
 db.once('open', () => {
-  for (let i = 0; i < RecordList.results.length; i++) {
-    Category.create({
-      name: RecordList.results[i].name,
-      icon: RecordList.results[i].icon
+  Category.create(type)
+    .then(() => {
+      console.log('Category Done')
+      return db.close()
     })
-  }
-  console.log('Category Done')
+    .then(() => {
+      console.log('database connection close')
+    })
 })
