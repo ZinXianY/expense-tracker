@@ -1,7 +1,11 @@
 //載入工具
 const express = require('express')
 const exphbs = require('express-handlebars')
+const record = require('./models/record')
 const app = express()
+
+//引用 Record model
+const Record = require('./models/record')
 
 
 //引用config/mongoose
@@ -13,7 +17,10 @@ app.set('view engine', 'hbs')
 
 //設定首頁路由
 app.get('/', (req, res) => {
-  res.render('index')
+  Record.find()
+    .lean()
+    .then(records => res.render('index', { records }))
+    .catch(error => console.log(error))
 })
 
 

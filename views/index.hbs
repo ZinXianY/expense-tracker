@@ -1,0 +1,51 @@
+<!-- 總金額 -->
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <span class="col-4">總支出金額: </span>
+    <span class="d-flex justify-content-center">2000</span>
+  </div>
+
+  <!-- 排序 -->
+  <div class="d-flex justify-content-end">
+    <form class="" action="">
+      <div class="form-group">
+        <select class="form-control btn btn-secondary mt-5" name="" id="" onchange="this.form.submit()">
+          <option value="" disabled selected>選擇支出類別 :</option>
+          <option value="name">家具物業</option>
+          <option value="-name">交通出行</option>
+          <option value="category">休閒娛樂</option>
+          <option value="location">餐飲食品</option>
+          <option value="rating">其他</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <!-- 支出表單 -->
+  <div class="row mx-auto col-9">
+    <ul class="list-group list-group-flush col-9">
+      {{#each records}}
+      <div class="row records col-12">
+        <li class="list-group-item col-12 mb-2 d-flex">
+          <div class="col-1 my-0 d-flex justify-content-center">
+            <i class="{{ this.icon }} fa-4x"></i>
+          </div>
+          <div class="record-detail col-12 ml-5">
+            <p class="record-title font-weight-bold">{{ this.name }}</p>
+            <p class="record-date">{{ this.date }}</p>
+          </div>
+          <div class="record-amount col-1 d-flex align-items-center">
+            <p>{{ this.amount }}</p>
+          </div>
+          <div class="record-button col-6 d-flex justify-content-end align-items-center">
+            <a class="btn btn-primary" href="" type="submit">修改</a>
+            <form action="" method="" class="ml-2">
+              <button class="btn btn-danger" type="submit">刪除</button>
+            </form>
+          </div>
+        </li>
+      </div>
+      {{/each}}
+    </ul>
+  </div>
+</div>
