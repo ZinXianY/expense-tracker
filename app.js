@@ -7,6 +7,7 @@ const app = express()
 //引用 Record model
 const Record = require('./models/record')
 const Category = require('./models/category')
+const category = require('./models/category')
 
 //引用config/mongoose
 require('./config/mongoose')
@@ -49,6 +50,38 @@ app.post('/records', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//設定 edit 頁面路由
+app.get('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then(record => res.render('edit', { record }))
+    .catch(error => console.log(error))
+})
+
+//設定 edit 餐廳資料
+app.post('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  const category = req.body.category
+  Record.findById(id)
+    .then((record) => {
+      record.name = req.body.name
+      record.date = req.body.date
+      record.category = req.body.category
+      record.amount = req.body.amount
+
+      Category.findOne({ name: category })
+        .lean()
+        .then((item) => {
+          record.icon = item.icon
+        })
+        .then(() => {
+          record.save()
+        })
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 //設定監聽器
 app.listen(3000, () => {
   console.log(`App is running on http://localhost:3000`)
