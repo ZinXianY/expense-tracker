@@ -8,7 +8,6 @@ const recordSchema = new Schema({
   },
   name_en: {
     type: String,
-    required: true
   },
   category: {
     type: String,
@@ -19,7 +18,7 @@ const recordSchema = new Schema({
     required: true
   },
   amount: {
-    type: String,
+    type: Number,
     required: true
   },
   icon: {
