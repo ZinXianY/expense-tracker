@@ -7,7 +7,6 @@ const app = express()
 //引用 Record model
 const Record = require('./models/record')
 const Category = require('./models/category')
-const category = require('./models/category')
 
 //引用config/mongoose
 require('./config/mongoose')
@@ -19,11 +18,23 @@ app.set('view engine', 'hbs')
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//設定自動加總總金額
+function total(records) {
+  let sum = 0
+  records.forEach((record) => {
+    sum += record.amount
+  })
+  return sum
+}
+
 //設定首頁路由
 app.get('/', (req, res) => {
   Record.find()
     .lean()
-    .then(records => res.render('index', { records }))
+    .then(records => {
+      const totalAmount = total(records).toString()
+      res.render('index', { records, totalAmount })
+    })
     .catch(error => console.log(error))
 })
 
@@ -91,6 +102,19 @@ app.post('/records/:id/delete', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+//設定 filter 路由
+app.get('/', (req, res) => {
+  const filter = req.query.category
+  Record.find({ category: filter })
+    .lean()
+    .then((records) => {
+      const totalAmount = total(records).toLocaleString()
+      res.render('index', { records, filter, totalAmount })
+    })
+    .catch(error => console.log(error))
+})
+
 //設定監聽器
 app.listen(3000, () => {
   console.log(`App is running on http://localhost:3000`)
