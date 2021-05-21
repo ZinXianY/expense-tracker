@@ -41,7 +41,7 @@
 
           <div class="record-button col-4 d-flex justify-content-end align-items-center">
             <a class="btn btn-primary" href="/records/{{ this._id}}/edit" type="submit">修改</a>
-            <form action="" method="" class="ml-2">
+            <form action="/records/{{ this._id }}/delete" method="POST" class="ml-2">
               <button class="btn btn-danger" type="submit">刪除</button>
             </form>
           </div>
