@@ -7,19 +7,20 @@
 
   <!-- 排序 -->
   <div class="d-flex justify-content-end">
-    <form class="" action="">
+    <form class="" action="/filter" method="GET">
       <div class="form-group">
-        <select class="form-control btn btn-secondary mt-5" name="" id="" onchange="this.form.submit()">
-          <option value="" disabled selected>選擇支出類別 :</option>
-          <option value="name">家具物業</option>
-          <option value="-name">交通出行</option>
-          <option value="category">休閒娛樂</option>
-          <option value="location">餐飲食品</option>
-          <option value="rating">其他</option>
+        <select class="form-control btn btn-secondary mt-5" name="category" id="category" onchange="this.form.submit()">
+          <option value="" selected disabled>選擇支出類別 :</option>
+          <option value="home" {{#if this.category}}selected{{/if}}>家居物業</option>
+          <option value="transportation" {{#if this.category}}selected{{/if}}>交通出行</option>
+          <option value="amusement" {{#if this.category }}selected{{/if}}>休閒娛樂</option>
+          <option value="food" {{#if this.category }}selected{{/if}}>餐飲食品</option>
+          <option value="other" {{#if this.category }}selected{{/if}}>其他</option>
         </select>
       </div>
     </form>
   </div>
+
 
   <!-- 支出表單 -->
   <div class="row mx-auto col-8">

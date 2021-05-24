@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   Record.find()
     .lean()
     .then(records => {
-      const totalAmount = total(records).toString()
+      const totalAmount = total(records).toLocaleString()
       res.render('index', { records, totalAmount })
     })
     .catch(error => console.log(error))
@@ -50,7 +50,7 @@ app.get('/new', (req, res) => {
 app.post('/records', (req, res) => {
   const record = req.body
   const category = req.body.category
-  Category.findOne({ name: category })
+  Category.findOne({ category })
     .lean()
     .then(function (item) {
       return (record.icon = item.icon)
@@ -69,19 +69,18 @@ app.get('/records/:id/edit', (req, res) => {
     .then(record => res.render('edit', { record }))
     .catch(error => console.log(error))
 })
-
 //設定 edit 餐廳資料
 app.post('/records/:id/edit', (req, res) => {
   const id = req.params.id
-  const category = req.body.category
-  Record.findById(id)
-    .then((record) => {
-      record.name = req.body.name
-      record.date = req.body.date
-      record.category = req.body.category
-      record.amount = req.body.amount
+  const { name, date, category, amount } = req.body
+  return Record.findById(id)
+    .then(record => {
+      record.name = name
+      record.date = date
+      record.category = category
+      record.amount = amount
 
-      Category.findOne({ name: category })
+      Category.findOne({ category })
         .lean()
         .then((item) => {
           record.icon = item.icon
@@ -104,13 +103,17 @@ app.post('/records/:id/delete', (req, res) => {
 })
 
 //設定 filter 路由
-app.get('/', (req, res) => {
-  const filter = req.query.category
-  Record.find({ category: filter })
+app.get('/filter', (req, res) => {
+  const category = req.query.category
+  console.log(category)
+  Record.find({ category })
     .lean()
     .then((records) => {
       const totalAmount = total(records).toLocaleString()
-      res.render('index', { records, filter, totalAmount })
+      console.log(records)
+      Category.find()
+        .lean()
+        .then(category => res.render('index', { records, totalAmount, category }))
     })
     .catch(error => console.log(error))
 })
