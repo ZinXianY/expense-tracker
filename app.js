@@ -32,17 +32,23 @@ app.get('/', (req, res) => {
   Record.find()
     .lean()
     .then(records => {
-      const totalAmount = total(records).toLocaleString()
-      res.render('index', { records, totalAmount })
+      Category.find()
+        .lean()
+        .then(category => {
+          const totalAmount = total(records).toLocaleString()
+          res.render('index', { records, totalAmount, category })
+        })
+        .catch(error => console.log(error))
     })
-    .catch(error => console.log(error))
 })
 
 //設計 new 頁面路由
 app.get('/new', (req, res) => {
   Category.find()
     .lean()
-    .then(category => res.render('new', { category }))
+    .then(category => {
+      res.render('new', { category })
+    })
     .catch(error => console.log(error))
 })
 
@@ -104,16 +110,19 @@ app.post('/records/:id/delete', (req, res) => {
 
 //設定 filter 路由
 app.get('/filter', (req, res) => {
-  const category = req.query.category
-  console.log(category)
-  Record.find({ category })
+  const query = req.query.category
+  Record.find({ category: query })
     .lean()
     .then((records) => {
       const totalAmount = total(records).toLocaleString()
-      console.log(records)
       Category.find()
         .lean()
-        .then(category => res.render('index', { records, totalAmount, category }))
+        .then(category => {
+          category = category.map(item => {
+            return { ...item, isSelected: item.category === query }
+          })
+          res.render('index', { records, totalAmount, category })
+        })
     })
     .catch(error => console.log(error))
 })
