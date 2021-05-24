@@ -6,9 +6,6 @@ const recordSchema = new Schema({
     type: String,
     required: true
   },
-  name_en: {
-    type: String,
-  },
   category: {
     type: String,
     required: true
