@@ -11,17 +11,17 @@
       <div class="form-group">
         <select class="form-control btn btn-secondary mt-5" name="category" id="category" onchange="this.form.submit()">
           <option value="" selected disabled>選擇支出類別 :</option>
-          <option value="home" {{#if this.category}}selected{{/if}}>家居物業</option>
-          <option value="transportation" {{#if this.category}}selected{{/if}}>交通出行</option>
+          {{#each category}}
+          <option value="{{ this.category }}" {{#if this.isSelected }} selected {{/if}}>{{ this.category_cn }}</option>
+          {{/each}}
+          {{!-- <option value="transportation" {{#if this.category}}selected{{/if}}>交通出行</option>
           <option value="amusement" {{#if this.category }}selected{{/if}}>休閒娛樂</option>
           <option value="food" {{#if this.category }}selected{{/if}}>餐飲食品</option>
-          <option value="other" {{#if this.category }}selected{{/if}}>其他</option>
+          <option value="other" {{#if this.category }}selected{{/if}}>其他</option> --}}
         </select>
       </div>
     </form>
   </div>
-
-
   <!-- 支出表單 -->
   <div class="row mx-auto col-8">
     <ul class="list-group">
