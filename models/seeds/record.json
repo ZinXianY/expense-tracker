@@ -39,22 +39,27 @@
   "categories": [
     {
       "category": "home",
+      "category_cn": "家居物業",
       "icon": "fas fa-home"
     },
     {
       "category": "transportation",
+      "category_cn": "交通出行",
       "icon": "fas fa-shuttle-van"
     },
     {
       "category": "amusement",
+      "category_cn": "休閒娛樂",
       "icon": "fas fa-grin-beam"
     },
     {
       "category": "food",
+      "category_cn": "餐飲食品",
       "icon": "fas fa-utensils"
     },
     {
       "category": "other",
+      "category_cn": "其他",
       "icon": "fas fa-pen"
     }
   ]
