@@ -2,42 +2,59 @@
   "results": [
     {
       "name": "租金",
-      "name_en": "home",
-      "category": "家居物業",
+      "category": "home",
       "date": "2021-05-10",
       "amount": "25000",
       "icon": "fas fa-home"
     },
     {
       "name": "捷運",
-      "name_en": "transportation",
-      "category": "交通出行",
+      "category": "transportation",
       "date": "2021-05-10",
       "amount": "120",
       "icon": "fas fa-shuttle-van"
     },
     {
       "name": "電影",
-      "name_en": "amusement",
-      "category": "休閒娛樂",
+      "category": "amusement",
       "date": "2021-05-11",
       "amount": "220",
       "icon": "fas fa-grin-beam"
     },
     {
       "name": "晚餐",
-      "name_en": "food",
-      "category": "餐飲食品",
+      "category": "food",
       "date": "2021-05-11",
       "amount": "120",
       "icon": "fas fa-utensils"
     },
     {
       "name": "其他",
-      "name_en": "other",
-      "category": "其他",
+      "category": "other",
       "date": "2021-05-11",
       "amount": "60",
+      "icon": "fas fa-pen"
+    }
+  ],
+  "categories": [
+    {
+      "category": "home",
+      "icon": "fas fa-home"
+    },
+    {
+      "category": "transportation",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "category": "amusement",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "category": "food",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "category": "other",
       "icon": "fas fa-pen"
     }
   ]
