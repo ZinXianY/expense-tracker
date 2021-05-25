@@ -14,10 +14,6 @@
           {{#each category}}
           <option value="{{ this.category }}" {{#if this.isSelected }} selected {{/if}}>{{ this.category_cn }}</option>
           {{/each}}
-          {{!-- <option value="transportation" {{#if this.category}}selected{{/if}}>交通出行</option>
-          <option value="amusement" {{#if this.category }}selected{{/if}}>休閒娛樂</option>
-          <option value="food" {{#if this.category }}selected{{/if}}>餐飲食品</option>
-          <option value="other" {{#if this.category }}selected{{/if}}>其他</option> --}}
         </select>
       </div>
     </form>
@@ -42,7 +38,7 @@
 
           <div class="record-button col-4 d-flex justify-content-end align-items-center">
             <a class="btn btn-primary" href="/records/{{ this._id}}/edit" type="submit">修改</a>
-            <form action="/records/{{ this._id }}/delete" method="POST" class="ml-2">
+            <form action="/records/{{ this._id }}/?_method=DELETE" method="POST" class="ml-2">
               <button class="btn btn-danger" type="submit">刪除</button>
             </form>
           </div>

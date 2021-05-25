@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 //引用路由器
 const routes = require('./routes')
@@ -17,6 +18,9 @@ app.set('view engine', 'hbs')
 
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
+
+//設定 method-override
+app.use(methodOverride('_method'))
 
 //導入路由器
 app.use(routes)

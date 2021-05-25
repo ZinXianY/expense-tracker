@@ -15,7 +15,7 @@ router.get('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 //設定 edit 餐廳資料
-router.post('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, date, category, amount } = req.body
   return Record.findById(id)
@@ -39,7 +39,7 @@ router.post('/:id/edit', (req, res) => {
 })
 
 //設定 delete路由
-router.post('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then(record => record.remove())
