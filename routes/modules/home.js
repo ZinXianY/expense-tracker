@@ -41,7 +41,7 @@ router.get('/new', (req, res) => {
 })
 
 //設定 Create 路由
-router.post('/records', (req, res) => {
+router.post('/', (req, res) => {
   const record = req.body
   const category = req.body.category
   Category.findOne({ category })
