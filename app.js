@@ -28,6 +28,6 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 //設定監聽器
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
 })
