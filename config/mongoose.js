@@ -8,7 +8,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 const db = mongoose.connection
 
 //連線異常
-db.on('err', () => {
+db.on('error', () => {
   console.log('mongodb error!')
 })
 
