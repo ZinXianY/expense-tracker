@@ -15,7 +15,7 @@ const records = require('./modules/records')
 router.use('/records', records)
 
 //引入 filter 模組程式碼
-const filter = require('./modules/filter')
+const filter = require('../routes/modules/filter')
 
 //符合 /filter 字串導向 filter 模組
 router.use('/filter', filter)

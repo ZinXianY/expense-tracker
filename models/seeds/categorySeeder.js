@@ -1,6 +1,6 @@
 const Category = require('../category')
 
-const CategoryList = require('./record.json').categories
+const CategoryList = require('./record.json')
 
 const db = require('../../config/mongoose')
 
