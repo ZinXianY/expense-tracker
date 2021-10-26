@@ -7,5 +7,9 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+//設定註冊路由
+router.get('/register', (req, res) => {
+  res.render('register')
+})
 //匯出路由
 module.exports = router
