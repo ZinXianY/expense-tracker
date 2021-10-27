@@ -22,6 +22,12 @@ router.get('/register', (req, res) => {
   res.render('register')
 })
 
+//設定登出路由
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
+})
+
 //設定註冊功能
 router.post('/register', (req, res) => {
   //取得註冊表單參數
