@@ -1,6 +1,7 @@
 //載入工具
 const express = require('express')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
@@ -17,6 +18,13 @@ const PORT = process.env.PORT || 3000
 //套入樣板引擎
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+//設定 express-session
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
