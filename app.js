@@ -9,6 +9,9 @@ const methodOverride = require('method-override')
 //引用路由器
 const routes = require('./routes')
 
+//引用config/passport
+const usePassport = require('./config/passport')
+
 //引用config/mongoose
 require('./config/mongoose')
 
@@ -31,6 +34,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //設定 method-override
 app.use(methodOverride('_method'))
+
+//呼叫 Passport函式傳入app
+usePassport(app)
 
 //導入路由器
 app.use(routes)
