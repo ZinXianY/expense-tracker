@@ -17,11 +17,16 @@ const users = require('./modules/users')
 //引入 filter 模組程式碼
 const filter = require('../routes/modules/filter')
 
+//引入 auth 模組程式碼
+const auth = require('./modules/auth')
+
 //符合 /records 字串導向 records 模組
 router.use('/records', authenticator, records)
 
 //符合 /users 字串導向 users 模組
 router.use('/users', users)
+
+router.use('/auth', auth)
 
 //符合 / 字串導向 home 模組
 router.use('/', authenticator, home)
