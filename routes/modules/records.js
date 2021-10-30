@@ -8,17 +8,19 @@ const Category = require('../../models/category')
 
 //設定 edit 頁面路由
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .lean()
     .then(record => res.render('edit', { record }))
     .catch(error => console.log(error))
 })
-//設定 edit 餐廳資料
+//設定 edit 資料
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const { name, date, category, amount } = req.body
-  return Record.findById(id)
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.name = name
       record.date = date
@@ -40,8 +42,9 @@ router.put('/:id', (req, res) => {
 
 //設定 delete路由
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

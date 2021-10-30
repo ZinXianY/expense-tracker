@@ -4,36 +4,31 @@
       "name": "租金",
       "category": "home",
       "date": "2021-05-10",
-      "amount": "25000",
-      "icon": "fas fa-home"
+      "amount": "25000"
     },
     {
       "name": "捷運",
       "category": "transportation",
       "date": "2021-05-10",
-      "amount": "120",
-      "icon": "fas fa-shuttle-van"
+      "amount": "120"
     },
     {
-      "name": "電影",
+      "name": "電影: 驚奇隊長",
       "category": "amusement",
       "date": "2021-05-11",
-      "amount": "220",
-      "icon": "fas fa-grin-beam"
+      "amount": "220"
     },
     {
       "name": "晚餐",
       "category": "food",
       "date": "2021-05-11",
-      "amount": "120",
-      "icon": "fas fa-utensils"
+      "amount": "120"
     },
     {
       "name": "其他",
       "category": "other",
       "date": "2021-05-11",
-      "amount": "60",
-      "icon": "fas fa-pen"
+      "amount": "60"
     }
   ],
   "categories": [

@@ -21,6 +21,12 @@ const recordSchema = new Schema({
   icon: {
     type: String,
     required: true
+  },
+  userId: { //加入關連設定
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 

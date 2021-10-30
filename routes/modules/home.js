@@ -5,6 +5,7 @@ const router = express.Router()
 //引用 Record & Category model
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const category = require('../../models/category')
 
 //設定自動加總總金額
 function total(records) {
@@ -17,7 +18,8 @@ function total(records) {
 
 //設定首頁路由
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .lean()
     .then(records => {
       Category.find()
@@ -42,15 +44,21 @@ router.get('/new', (req, res) => {
 
 //設定 Create 路由
 router.post('/', (req, res) => {
-  const record = req.body
-  const category = req.body.category
-  Category.findOne({ category })
+  const userId = req.user._id
+  const { name, date, category, amount } = req.body
+  return Category.findOne({ category })
     .lean()
-    .then(function (item) {
-      return (record.icon = item.icon)
-    })
-    .then(() => {
-      Record.create(record).then(() => res.redirect('/'))
+    .then(result => {
+      const { icon, category } = result
+      return Record.create({
+        name,
+        date,
+        category,
+        icon,
+        amount,
+        userId
+      })
+        .then(() => res.redirect('/'))
     })
     .catch(error => console.log(error))
 })
