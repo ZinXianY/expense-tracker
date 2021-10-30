@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 
 
 //引用路由器
@@ -38,10 +39,15 @@ app.use(methodOverride('_method'))
 //呼叫 Passport函式傳入app
 usePassport(app)
 
+//設定 connect-flash
+app.use(flash())
+
 //設定兩個本地變數
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
