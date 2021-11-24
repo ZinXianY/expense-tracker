@@ -27,8 +27,21 @@
     {
       "name": "其他",
       "category": "other",
-      "date": "2021-05-11",
+      "date": "2021-05-12",
       "amount": "60"
+    },
+    {
+      "name": "午餐",
+      "category": "food",
+      "date": "2021-05-12",
+      "amount": "60"
+    }
+  ],
+  "userSeeds": [
+    {
+      "name": "廣志",
+      "email": "user1@example.com",
+      "password": "12345678"
     }
   ],
   "categories": [
